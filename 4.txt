@@ -1,0 +1,94 @@
+// Package structure: com.example.authmanager.domain
+
+// User.java
+package com.example.authmanager.domain.entities;
+
+import java.util.List;
+
+public class User {
+    private String id;
+    private String name;
+    private String email;
+    private String password;
+    private List<Role> roles;
+
+    // Getters, Setters, and Constructors will go here
+}
+
+// Role.java
+package com.example.authmanager.domain.entities;
+
+public class Role {
+    private String id;
+    private String name;
+
+    // Getters, Setters, and Constructors will go here
+}
+
+// Email.java
+package com.example.authmanager.domain.values;
+
+public class Email {
+    private String value;
+
+    public Email(String value) {
+        if (!isValid(value)) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+        this.value = value;
+    }
+
+    private boolean isValid(String email) {
+        // Basic email validation logic
+        return email != null && email.contains("@");
+    }
+
+    public String getValue() {
+        return value;
+    }
+}
+
+// Password.java
+package com.example.authmanager.domain.values;
+
+public class Password {
+    private String value;
+
+    public Password(String value) {
+        if (!isValid(value)) {
+            throw new IllegalArgumentException("Password does not meet security requirements");
+        }
+        this.value = value;
+    }
+
+    private boolean isValid(String password) {
+        // Basic password validation logic (length, special chars, etc.)
+        return password != null && password.length() >= 8;
+    }
+
+    public String getValue() {
+        return value;
+    }
+}
+
+// AuthPort.java
+package com.example.authmanager.domain.ports;
+
+import com.example.authmanager.domain.entities.User;
+
+public interface AuthPort {
+    void registerUser(User user);
+    User loginUser(String email, String password);
+}
+
+// UserRepository.java
+package com.example.authmanager.domain.ports;
+
+import com.example.authmanager.domain.entities.User;
+
+import java.util.Optional;
+
+public interface UserRepository {
+    void save(User user);
+    Optional<User> findByEmail(String email);
+}

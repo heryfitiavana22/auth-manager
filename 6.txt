@@ -1,0 +1,74 @@
+// Package structure: com.example.authmanager.application
+
+// AuthService.java
+package com.example.authmanager.application.services;
+
+import com.example.authmanager.application.usecases.RegisterUserUseCase;
+import com.example.authmanager.application.usecases.LoginUserUseCase;
+import com.example.authmanager.domain.entities.User;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+@ApplicationScoped
+public class AuthService {
+
+    @Inject
+    private RegisterUserUseCase registerUserUseCase;
+
+    @Inject
+    private LoginUserUseCase loginUserUseCase;
+
+    public void registerUser(User user) {
+        registerUserUseCase.execute(user);
+    }
+
+    public User loginUser(String email, String password) {
+        return loginUserUseCase.execute(email, password);
+    }
+}
+
+// RegisterUserUseCase.java
+package com.example.authmanager.application.usecases;
+
+import com.example.authmanager.domain.entities.User;
+import com.example.authmanager.domain.ports.UserRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+@ApplicationScoped
+public class RegisterUserUseCase {
+
+    @Inject
+    private UserRepository userRepository;
+
+    public void execute(User user) {
+        // Check if user already exists
+        userRepository.findByEmail(user.getEmail()).ifPresent(existingUser -> {
+            throw new RuntimeException("User already exists with this email.");
+        });
+
+        // Save user
+        userRepository.save(user);
+    }
+}
+
+// LoginUserUseCase.java
+package com.example.authmanager.application.usecases;
+
+import com.example.authmanager.domain.entities.User;
+import com.example.authmanager.domain.ports.UserRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+@ApplicationScoped
+public class LoginUserUseCase {
+
+    @Inject
+    private UserRepository userRepository;
+
+    public User execute(String email, String password) {
+        return userRepository.findByEmail(email)
+                .filter(user -> user.getPassword().equals(password))
+                .orElseThrow(() -> new RuntimeException("Invalid email or password."));
+    }
+}
