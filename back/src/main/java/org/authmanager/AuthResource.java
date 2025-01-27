@@ -44,4 +44,5 @@ public class AuthResource {
                     .build();
         }
     }
+
 }
