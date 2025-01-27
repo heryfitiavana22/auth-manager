@@ -25,10 +25,8 @@ public class AdminResource {
     @Path("/user")
     public Response getUserInfo(@HeaderParam("Authorization") String authHeader) {
         try {
-            System.out.println(authHeader);
             String token = authHeader.replace("Bearer ", "");
 
-            // Vérification et décodage du token
             TokenVerifier<AccessToken> tokenVerifier = TokenVerifier.create(token, AccessToken.class)
                     .parse();
 
