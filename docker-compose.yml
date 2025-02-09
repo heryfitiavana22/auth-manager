@@ -1,7 +1,7 @@
 
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:26.1.1
     command: start-dev
     environment:
       - KEYCLOAK_ADMIN=admin
@@ -12,7 +12,7 @@ services:
       - keycloak_data:/opt/keycloak/data
 
   mariadb:
-    image: mariadb:latest
+    image: mariadb:11
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
@@ -25,7 +25,7 @@ services:
       - mariadb_data:/var/lib/mysql
 
   adminer:
-    image: adminer:latest
+    image: adminer
     restart: always
     environment:
       ADMINER_DEFAULT_SERVER: mariadb
@@ -36,7 +36,7 @@ services:
       - mariadb
 
   ldap:
-    image: osixia/openldap:latest
+    image: osixia/openldap:1.5.0
     environment:
       LDAP_ORGANISATION: "Example Inc."
       LDAP_DOMAIN: "example.com"
@@ -50,7 +50,7 @@ services:
 
 
   phpldapadmin:
-    image: osixia/phpldapadmin:latest
+    image: osixia/phpldapadmin:0.9.0
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: ldap
       PHPLDAPADMIN_HTTPS: "false"
