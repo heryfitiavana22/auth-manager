@@ -53,7 +53,7 @@ public class KeycloakAuth implements Authentification {
 
         Response response = usersResource.create(user);
         if (response.getStatus() != 201) {
-            throw new CreateUserException("Failed to create user" + response.getStatus());
+            throw new CreateUserException("Failed to create user " + response.getStatus());
         }
 
         String userId = response.getLocation().getPath().replaceAll(".*/([^/]+)$", "$1");
@@ -64,7 +64,6 @@ public class KeycloakAuth implements Authentification {
         passwordCred.setValue(registerUser.getPassword());
 
         usersResource.get(userId).resetPassword(passwordCred);
-        System.out.println(registerUser);
 
         var loginUser = login(new Login(registerUser.getUsername(), registerUser.getPassword()));
         return loginUser.unwrap();

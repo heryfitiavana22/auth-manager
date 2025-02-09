@@ -10,6 +10,7 @@ import org.authmanager.user.domain.exception.UserExisted;
 import org.authmanager.user.domain.ports.AuthService;
 import org.authmanager.user.domain.ports.out.Authentification;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -21,6 +22,7 @@ public class AuthUseCase implements AuthService {
     }
 
     @Override
+    @RolesAllowed("superadmin")
     public Token register(Register user) throws UserExisted, CreateUserException {
         return authentification.register(user);
     }

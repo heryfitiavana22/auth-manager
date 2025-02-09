@@ -10,7 +10,6 @@ import org.authmanager.user.domain.ports.in.AuthRest;
 
 import io.quarkus.security.UnauthorizedException;
 import jakarta.annotation.security.PermitAll;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.InternalServerErrorException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -24,7 +23,6 @@ public class AuthController implements AuthRest {
     }
 
     @Override
-    @RolesAllowed("superadmin")
     @POST
     @Path("/register")
     public Token register(Register user) {
