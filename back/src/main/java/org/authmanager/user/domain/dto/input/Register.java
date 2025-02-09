@@ -1,33 +1,23 @@
-package org.authmanager.domain.models;
+package org.authmanager.user.domain.dto.input;
 
 import java.util.List;
 
 import javax.management.relation.Role;
 
-public class User {
-    private String id;
+public class Register {
     private String name;
     private String email;
     private String password;
     private List<Role> roles;
 
-    public User() {
+    public Register() {
     }
 
-    public User(String id, String name, String email, String password, List<Role> roles) {
-        this.id = id;
+    public Register(String name, String email, String password, List<Role> roles) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.roles = roles;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -62,15 +52,13 @@ public class User {
         this.roles = roles;
     }
 
-    public void addRole(Role role) {
-        this.roles.add(role);
-    }
-
-    public void removeRole(Role role) {
-        this.roles.remove(role);
-    }
-
-    public boolean hasRole(Role role) {
-        return this.roles.contains(role);
+    @Override
+    public String toString() {
+        return "Register{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

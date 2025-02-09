@@ -1,4 +1,4 @@
-package org.authmanager.domain.dto.input;
+package org.authmanager.user.domain.dto.input;
 
 public class Login {
     private String username;

@@ -1,4 +1,4 @@
-package org.authmanager.domain.models;
+package org.authmanager.user.domain.models;
 
 public class Role {
     private String id;

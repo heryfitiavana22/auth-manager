@@ -1,9 +1,9 @@
-package org.authmanager.infra.keycloak;
+package org.authmanager.user.infra.keycloak;
 
 import java.util.Optional;
 
-import org.authmanager.domain.models.User;
-import org.authmanager.domain.ports.out.UserRepository;
+import org.authmanager.user.domain.models.User;
+import org.authmanager.user.domain.ports.out.UserRepository;
 
 public class UserKeycloakRepository implements UserRepository{
 

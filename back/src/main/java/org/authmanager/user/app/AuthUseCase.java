@@ -1,12 +1,12 @@
-package org.authmanager.app;
+package org.authmanager.user.app;
 
 import java.util.Optional;
 
-import org.authmanager.domain.dto.input.Login;
-import org.authmanager.domain.dto.input.Register;
-import org.authmanager.domain.dto.output.Token;
-import org.authmanager.domain.ports.AuthService;
-import org.authmanager.domain.ports.out.Authentification;
+import org.authmanager.user.domain.dto.input.Login;
+import org.authmanager.user.domain.dto.input.Register;
+import org.authmanager.user.domain.dto.output.Token;
+import org.authmanager.user.domain.ports.AuthService;
+import org.authmanager.user.domain.ports.out.Authentification;
 
 import jakarta.enterprise.context.ApplicationScoped;
 

@@ -1,11 +1,11 @@
-package org.authmanager.infra.keycloak;
+package org.authmanager.user.infra.keycloak;
 
 import java.util.Optional;
 
-import org.authmanager.domain.dto.input.Login;
-import org.authmanager.domain.dto.input.Register;
-import org.authmanager.domain.dto.output.Token;
-import org.authmanager.domain.ports.out.Authentification;
+import org.authmanager.user.domain.dto.input.Login;
+import org.authmanager.user.domain.dto.input.Register;
+import org.authmanager.user.domain.dto.output.Token;
+import org.authmanager.user.domain.ports.out.Authentification;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.representations.AccessTokenResponse;

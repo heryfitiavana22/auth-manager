@@ -1,7 +1,7 @@
-package org.authmanager.config;
+package org.authmanager.user.config;
 
-import org.authmanager.domain.ports.out.Authentification;
-import org.authmanager.infra.keycloak.KeycloakAuth;
+import org.authmanager.user.domain.ports.out.Authentification;
+import org.authmanager.user.infra.keycloak.KeycloakAuth;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import jakarta.enterprise.inject.Produces;

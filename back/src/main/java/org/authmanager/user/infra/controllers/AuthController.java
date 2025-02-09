@@ -1,10 +1,10 @@
-package org.authmanager.infra.controllers;
+package org.authmanager.user.infra.controllers;
 
-import org.authmanager.domain.dto.input.Login;
-import org.authmanager.domain.dto.input.Register;
-import org.authmanager.domain.dto.output.Token;
-import org.authmanager.domain.ports.AuthService;
-import org.authmanager.domain.ports.in.AuthRest;
+import org.authmanager.user.domain.dto.input.Login;
+import org.authmanager.user.domain.dto.input.Register;
+import org.authmanager.user.domain.dto.output.Token;
+import org.authmanager.user.domain.ports.AuthService;
+import org.authmanager.user.domain.ports.in.AuthRest;
 
 import io.quarkus.security.UnauthorizedException;
 import jakarta.annotation.security.PermitAll;

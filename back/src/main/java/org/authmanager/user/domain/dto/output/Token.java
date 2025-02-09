@@ -1,4 +1,4 @@
-package org.authmanager.domain.dto.output;
+package org.authmanager.user.domain.dto.output;
 
 public class Token {
     private String accessToken;

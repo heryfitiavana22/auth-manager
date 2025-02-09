@@ -1,4 +1,4 @@
-package org.authmanager.domain.dto.output;
+package org.authmanager.user.domain.dto.output;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package org.authmanager.domain.ports.out;
+package org.authmanager.user.domain.ports.out;
 
 import java.util.Optional;
 
-import org.authmanager.domain.models.User;
+import org.authmanager.user.domain.models.User;
 
 public interface UserRepository {
     void save(User user);
