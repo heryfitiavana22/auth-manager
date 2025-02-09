@@ -1,7 +1,7 @@
 package org.authmanager.user.app;
 
-import java.util.Optional;
-
+import org.authmanager.lib.ErrorType;
+import org.authmanager.lib.Result;
 import org.authmanager.user.domain.dto.input.Login;
 import org.authmanager.user.domain.dto.input.Register;
 import org.authmanager.user.domain.dto.output.Token;
@@ -24,7 +24,7 @@ public class AuthUseCase implements AuthService {
     }
 
     @Override
-    public Optional<Token> login(Login login) {
+    public Result<Token, ErrorType> login(Login login) {
         return authentification.login(login);
     }
 

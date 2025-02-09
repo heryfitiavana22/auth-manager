@@ -1,10 +1,11 @@
 package org.authmanager.user.infra.keycloak;
 
-import java.util.Optional;
-
+import org.authmanager.lib.ErrorType;
+import org.authmanager.lib.Result;
 import org.authmanager.user.domain.dto.input.Login;
 import org.authmanager.user.domain.dto.input.Register;
 import org.authmanager.user.domain.dto.output.Token;
+import org.authmanager.user.domain.exception.UnauthorizedAuth;
 import org.authmanager.user.domain.ports.out.Authentification;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
@@ -30,7 +31,7 @@ public class KeycloakAuth implements Authentification {
     }
 
     @Override
-    public Optional<Token> login(Login login) {
+    public Result<Token, ErrorType> login(Login login) {
         try {
             Keycloak keycloak = KeycloakBuilder.builder()
                     .serverUrl(SERVER_URL)
@@ -43,12 +44,12 @@ public class KeycloakAuth implements Authentification {
                     .build();
 
             AccessTokenResponse tokenResponse = keycloak.tokenManager().grantToken();
+            Token token = new Token(tokenResponse.getToken(), tokenResponse.getRefreshToken(),
+                    tokenResponse.getExpiresIn(), tokenResponse.getRefreshExpiresIn());
 
-            return Optional.of(
-                    new Token(tokenResponse.getToken(), tokenResponse.getRefreshToken(), tokenResponse.getExpiresIn(),
-                            tokenResponse.getRefreshExpiresIn()));
+            return Result.ok(token);
         } catch (Exception e) {
-            return Optional.empty();
+            return Result.err(new UnauthorizedAuth());
         }
     }
 

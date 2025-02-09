@@ -30,10 +30,10 @@ public class AuthController implements AuthRest {
     @PermitAll
     public Token login(Login login) {
         var value = authService.login(login);
-        if (value.isEmpty()) {
+        if (value.isErr()) {
             throw new UnauthorizedException("Invalid credentials");
         }
-        return value.get();
+        return value.unwrap();
     }
 
 }
