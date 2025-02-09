@@ -1,4 +1,4 @@
-package org.authmanager.domain.entity;
+package org.authmanager.domain.models;
 
 import java.util.List;
 
