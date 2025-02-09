@@ -5,6 +5,8 @@ import org.authmanager.lib.Result;
 import org.authmanager.user.domain.dto.input.Login;
 import org.authmanager.user.domain.dto.input.Register;
 import org.authmanager.user.domain.dto.output.Token;
+import org.authmanager.user.domain.exception.CreateUserException;
+import org.authmanager.user.domain.exception.UserExisted;
 import org.authmanager.user.domain.ports.AuthService;
 import org.authmanager.user.domain.ports.out.Authentification;
 
@@ -19,7 +21,7 @@ public class AuthUseCase implements AuthService {
     }
 
     @Override
-    public Token register(Register user) {
+    public Token register(Register user) throws UserExisted, CreateUserException {
         return authentification.register(user);
     }
 

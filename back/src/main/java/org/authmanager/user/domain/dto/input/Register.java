@@ -2,10 +2,10 @@ package org.authmanager.user.domain.dto.input;
 
 import java.util.List;
 
-import javax.management.relation.Role;
+import org.authmanager.user.domain.models.Role;
 
 public class Register {
-    private String name;
+    private String username;
     private String email;
     private String password;
     private List<Role> roles;
@@ -13,19 +13,19 @@ public class Register {
     public Register() {
     }
 
-    public Register(String name, String email, String password, List<Role> roles) {
-        this.name = name;
+    public Register(String username, String email, String password, List<Role> roles) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -55,7 +55,7 @@ public class Register {
     @Override
     public String toString() {
         return "Register{" +
-                "name='" + name + '\'' +
+                "username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +

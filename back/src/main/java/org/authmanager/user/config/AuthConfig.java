@@ -24,8 +24,11 @@ public class AuthConfig {
     @ConfigProperty(name = "keycloak.client-secret")
     String clientSecret;
 
+    private String ADMIN_USERNAME = "superadmin";
+    private String ADMIN_PASSWORD = "admin";
+
     @Produces
     public Authentification authentification() {
-        return new KeycloakAuth(serverUrl, realm, clientId, clientSecret);
+        return new KeycloakAuth(serverUrl, realm, clientId, clientSecret, ADMIN_USERNAME, ADMIN_PASSWORD);
     }
 }
