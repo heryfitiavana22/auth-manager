@@ -2,13 +2,13 @@ package org.authmanager.user.domain.exception;
 
 import org.authmanager.lib.CustomError;
 
-public class UserExisted extends CustomError {
+public class UserExistedException extends CustomError {
 
-    public UserExisted() {
+    public UserExistedException() {
         super("User existed");
     }
 
-    public UserExisted(String message) {
+    public UserExistedException(String message) {
         super(message);
     }
 

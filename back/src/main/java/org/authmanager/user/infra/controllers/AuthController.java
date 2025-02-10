@@ -4,7 +4,7 @@ import org.authmanager.user.domain.dto.input.Login;
 import org.authmanager.user.domain.dto.input.Register;
 import org.authmanager.user.domain.dto.output.Token;
 import org.authmanager.user.domain.exception.CreateUserException;
-import org.authmanager.user.domain.exception.UserExisted;
+import org.authmanager.user.domain.exception.UserExistedException;
 import org.authmanager.user.domain.ports.AuthService;
 import org.authmanager.user.domain.ports.in.AuthRest;
 
@@ -28,7 +28,7 @@ public class AuthController implements AuthRest {
     public Token register(Register user) {
         try {
             return authService.register(user);
-        } catch (UserExisted e) {
+        } catch (UserExistedException e) {
             throw new ConflictException("User already exists");
         } catch (CreateUserException e) {
             System.err.println(e);

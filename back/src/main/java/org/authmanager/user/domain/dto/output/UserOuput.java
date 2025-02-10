@@ -7,7 +7,6 @@ import javax.management.relation.Role;
 public class UserOuput {
     private String name;
     private String email;
-    private String password;
     private List<Role> roles;
 
     public UserOuput() {
@@ -16,7 +15,6 @@ public class UserOuput {
     public UserOuput(String name, String email, String password, List<Role> roles) {
         this.name = name;
         this.email = email;
-        this.password = password;
         this.roles = roles;
     }
 
@@ -34,14 +32,6 @@ public class UserOuput {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<Role> getRoles() {
@@ -69,7 +59,6 @@ public class UserOuput {
         return "UserOuput{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", roles=" + roles +
                 '}';
     }

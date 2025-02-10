@@ -1,13 +1,13 @@
 package org.authmanager.user.infra.keycloak;
 
-import org.authmanager.lib.ErrorType;
+import org.authmanager.lib.CustomError;
 import org.authmanager.lib.Result;
 import org.authmanager.user.domain.dto.input.Login;
 import org.authmanager.user.domain.dto.input.Register;
 import org.authmanager.user.domain.dto.output.Token;
 import org.authmanager.user.domain.exception.CreateUserException;
-import org.authmanager.user.domain.exception.UnauthorizedAuth;
-import org.authmanager.user.domain.exception.UserExisted;
+import org.authmanager.user.domain.exception.UnauthorizedAuthException;
+import org.authmanager.user.domain.exception.UserExistedException;
 import org.authmanager.user.domain.ports.out.Authentification;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
@@ -37,12 +37,12 @@ public class KeycloakAuth implements Authentification {
     }
 
     @Override
-    public Token register(Register registerUser) throws UserExisted, CreateUserException {
+    public Token register(Register registerUser) throws UserExistedException, CreateUserException {
         Keycloak keycloakSuperadmin = loginKeycloak(new Login(ADMIN_USERNAME, ADMIN_PASSWORD));
         UsersResource usersResource = keycloakSuperadmin.realm(REALM).users();
 
         if (!usersResource.search(registerUser.getUsername()).isEmpty()) {
-            throw new UserExisted();
+            throw new UserExistedException();
         }
         UserRepresentation user = new UserRepresentation();
         user.setUsername(registerUser.getUsername());
@@ -70,7 +70,7 @@ public class KeycloakAuth implements Authentification {
     }
 
     @Override
-    public Result<Token, ErrorType> login(Login login) {
+    public Result<Token, CustomError> login(Login login) {
         try {
             Keycloak keycloak = loginKeycloak(login);
 
@@ -80,7 +80,7 @@ public class KeycloakAuth implements Authentification {
 
             return Result.ok(token);
         } catch (Exception e) {
-            return Result.err(new UnauthorizedAuth());
+            return Result.err(new UnauthorizedAuthException());
         }
     }
 
