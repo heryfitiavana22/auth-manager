@@ -1,18 +1,17 @@
 package org.authmanager.user.domain.dto.output;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.management.relation.Role;
 
 public class UserOuput {
     private String name;
     private String email;
-    private List<Role> roles;
+    private List<RoleOutput> roles = new ArrayList<>();
 
     public UserOuput() {
     }
 
-    public UserOuput(String name, String email, String password, List<Role> roles) {
+    public UserOuput(String name, String email, String password, List<RoleOutput> roles) {
         this.name = name;
         this.email = email;
         this.roles = roles;
@@ -34,23 +33,27 @@ public class UserOuput {
         this.email = email;
     }
 
-    public List<Role> getRoles() {
+    public List<RoleOutput> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(List<RoleOutput> roles) {
         this.roles = roles;
     }
 
-    public void addRole(Role role) {
+    public void addRole(RoleOutput role) {
         this.roles.add(role);
     }
 
-    public void removeRole(Role role) {
+    public void addRole(String name) {
+        this.roles.add(new RoleOutput(name));
+    }
+
+    public void removeRole(RoleOutput role) {
         this.roles.remove(role);
     }
 
-    public boolean hasRole(Role role) {
+    public boolean hasRole(RoleOutput role) {
         return this.roles.contains(role);
     }
 
